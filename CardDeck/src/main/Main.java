@@ -19,7 +19,7 @@ public class Main {
 		//shows option menu
 		showOptions();
 		Scanner scan = new Scanner(System.in);
-		while(option != 4){
+		while(option != 3){
 		try{
 			//reads and sets option picked
 			option = scan.nextInt();
@@ -27,7 +27,7 @@ public class Main {
 			scan.nextLine();
 			option = 0;
 		}
-			if(option>4||option<1){
+			if(option>3||option<1){
 				System.out.println("Invalid Option!!! Please pick another one.");
 				
 			}else{
@@ -56,21 +56,6 @@ public class Main {
 					//shows that a card has been flipped
 					cardFlipped = true;
 					break;
-				case 3:
-					//clear the screen
-					clearScreen();
-					//get size of current deck
-					int z=deck.deckSize();
-					//loop to deal out entire deck
-					for(int y = 0; y<z;y++){
-					//deals a card
-					deck.dealCard();
-					}
-					//shows option menu
-					showOptions();
-					//shows that a card has been flipped
-					cardFlipped = true;
-					break;
 				default:
 					break;
 				}
@@ -85,8 +70,7 @@ public class Main {
 		System.out.println("-------------------");
 		System.out.println("1. Shuffle Deck");
 		System.out.println("2. Flip A Card");
-		System.out.println("3. Show entire deck");
-		System.out.println("4. Exit");
+		System.out.println("3. Exit");
 		System.out.println("-------------------");
 		System.out.println("Enter option number now: ");
 	}
