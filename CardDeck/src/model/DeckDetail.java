@@ -25,40 +25,54 @@ public class DeckDetail {
 		}
 		//creates the deck
         for(int h=0;h<suit.length;h++){
-        for(int i=rank.length;i>0;i--){
-            card = new CardDetail(suit[h],rank[i-1]);
-            deck.add(card);
-        }
+	        for(int i=rank.length;i>0;i--){
+	            card = new CardDetail(suit[h],rank[i-1]);
+	            deck.add(card);
+	        }
         }
     }
 	public void shuffleDeck(){
-        ArrayList<CardDetail> temp = new ArrayList<CardDetail>();
-        int k = deck.size();
+
+       int k = deck.size();
        for(int j = 0;j<k;j++){
-           //generates a random number to pick a card
-           int rand = randomNumber();
-           //creates a copy of the current card
-           temp.add(deck.get(rand));
-           deck.remove(rand);
+    	   try
+    	   {
+	           //generates a random number to pick a card
+	           int rand = randomNumber();
+	           //swaps the element at rand and element at j
+	           CardDetail tempCard = deck.get(rand);
+	           deck.set(rand, deck.get(j));
+	           deck.set(j, tempCard);
+    	   }
+    	   catch(IndexOutOfBoundsException e)
+    	   {
+    		   System.out.println("Error shuffling deck");
+    	   }
+           
        }
-       deck = temp;
        System.out.println("Deck Has Been Shuffled");
    }
 	public int deckSize(){
 		return deck.size();
 	}
 	public void dealCard(){
-        
-		//if counter reaches end of deck
-        if(deck.size() == 0){
-            //tell the user they ran out of deck
-            System.out.println("Out Of Cards");
-        }else{
-        //display the currently flipped card
-        System.out.println(deck.get(0).getRank()+" of "+ deck.get(0).getSuit());
-        //increment flip counter to get next card
-        deck.remove(0);
+        try
+        {
+			//if counter reaches end of deck
+	        if(deck.size() == 0){
+	            //tell the user they ran out of deck
+	            System.out.println("Out Of Cards");
+	        }else{
+		        //display the currently flipped card
+		        System.out.println(deck.get(0).getRank()+" of "+ deck.get(0).getSuit());
+		        //increment flip counter to get next card
+		        deck.remove(0);
+	        }
         }
+        catch(IndexOutOfBoundsException e)
+ 	    {
+ 		   System.out.println("Error dealing a card");
+ 	    }
     }
 	//creates a random number if there is more than one card in deck
 	public int randomNumber(){
@@ -66,8 +80,9 @@ public class DeckDetail {
         if(deck.size()==1){
         	
         }else{
-        Random cards = new Random();
-        rand = cards.nextInt(deck.size());}
+	        Random cards = new Random();
+	        rand = cards.nextInt(deck.size());
+        }
         return rand;
     }
 }
