@@ -35,7 +35,7 @@ public class DeckDetail {
         ArrayList<CardDetail> temp = new ArrayList<CardDetail>();
         int k = deck.size();
        for(int j = 0;j<k;j++){
-           //generates a random number that is unlike the current place in the deck
+           //generates a random number to pick a card
            int rand = randomNumber();
            //creates a copy of the current card
            temp.add(deck.get(rand));
